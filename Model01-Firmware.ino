@@ -524,4 +524,13 @@ void setup() {
 
 void loop() {
   Kaleidoscope.loop();
+
+  const bool capsState = kaleidoscope::hid::getKeyboardLEDs() & LED_CAPS_LOCK;
+
+  if (capsState) {
+    LEDControl.setCrgbAt(2, 0, CRGB(255, 255, 255));
+  } else {
+    LEDControl.setCrgbAt(2, 0, CRGB(0, 0, 0));
+    /* LEDControl.refreshAt(0, 0); */
+  }
 }
