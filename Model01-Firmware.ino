@@ -236,7 +236,7 @@ KEYMAPS(
                   Key_H, Key_J, Key_K,     Key_L,         Key_Semicolon, Key_Quote,
    Key_CapsLock,  Key_N, Key_M, Key_Comma, Key_Period,    Key_Slash,     OSM(LeftGui),
    Key_CapsLock, OSM(RightShift), OSM(RightAlt), OSM(RightControl),
-   Key_PcApplication),
+   OSM(RightAlt)),
 
 
 #else
