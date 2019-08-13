@@ -167,7 +167,7 @@ KEYMAPS(
    Key_RightAlt),
 
   [FUNCTION_ANNE] =  KEYMAP_STACKED
-  (LockLayer(FUNCTION_MAX),      Key_F1,           Key_F2,      Key_F3,     Key_F4,        Key_F5,           LockLayer(NUMPAD_ANNE),
+  (LockLayer(LAYOUT_MAX),      Key_F1,           Key_F2,      Key_F3,     Key_F4,        Key_F5,           LockLayer(NUMPAD_ANNE),
    Key_Tab,  ___,              Key_mouseUp, ___,        Key_mouseBtnR, Key_mouseWarpEnd, Key_mouseWarpNE,
    Key_Home, Key_mouseL,       Key_mouseDn, Key_mouseR, Key_mouseBtnL, Key_mouseWarpNW,
    Key_End,  Key_PrintScreen,  Key_Insert,  ___,        Key_mouseBtnM, Key_mouseWarpSW,  Key_mouseWarpSE,
@@ -204,7 +204,7 @@ KEYMAPS(
    OSM(LeftControl), Key_Spacebar, OSM(LeftShift), OSM(LeftAlt),
    OSM(RightAlt),
 
-   OSL(FUNCTION_MAX),  Key_6, Key_7, Key_8,     Key_9,         Key_0,        Key_Minus,
+   ShiftToLayer(FUNCTION_MAX),  Key_3, Key_7, Key_8,     Key_9,         Key_0,        Key_Minus,
    Key_Enter,     Key_Y, Key_U, Key_I,     Key_O,         Key_P,         Key_LeftBracket,
                   Key_H, Key_J, Key_K,     Key_L,         Key_Semicolon, Key_Quote,
    Key_CapsLock,  Key_N, Key_M, Key_Comma, Key_Period,    Key_Slash,     OSM(LeftGui),
@@ -212,7 +212,7 @@ KEYMAPS(
    OSM(RightAlt)),
 
   [FUNCTION_MAX] =  KEYMAP_STACKED
-  (UnlockLayer(FUNCTION_MAX),      Key_F1,           Key_F2,      Key_F3,     Key_F4,        Key_F5,           Key_LEDEffectNext,
+  (UnlockLayer(LAYOUT_MAX),      Key_F1,           Key_F2,      Key_F3,     Key_F4,        Key_F5,           Key_LEDEffectNext,
    Key_Tab,  ___,              Key_mouseUp, ___,        Key_mouseBtnR, Key_mouseWarpEnd, Key_mouseWarpNE,
    Key_Home, Key_mouseL,       Key_mouseDn, Key_mouseR, Key_mouseBtnL, Key_mouseWarpNW,
    Key_End,  Key_PrintScreen,  Key_Insert,  ___,        Key_mouseBtnM, Key_mouseWarpSW,  Key_mouseWarpSE,
