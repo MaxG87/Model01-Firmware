@@ -426,6 +426,6 @@ void loop() {
   if (capsState) {
     LEDControl.setCrgbAt(KeyAddr(2, 0), CRGB(255, 255, 255));
   } else {
-    LEDControl.setCrgbAt(KeyAddr(2, 0), CRGB(0, 0, 0));
+    LEDControl.refreshAt(KeyAddr(2, 0));
   }
 }
