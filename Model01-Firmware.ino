@@ -52,6 +52,7 @@
 #include <Kaleidoscope-OneShot.h>
 #include <Kaleidoscope-Escape-OneShot.h>
 #include <Kaleidoscope-LED-ActiveModColor.h>
+#include <Kaleidoscope-LED-ActiveLayerColor.h>
 
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
   * The names aren't particularly important. What is important is that each
@@ -371,6 +372,9 @@ KALEIDOSCOPE_INIT_PLUGINS(
   // LEDControl provides support for other LED modes
   LEDControl,
 
+  // LED-ActiveLayerColor allows to indicate which layer one is in
+  LEDActiveLayerColorEffect,
+
   // The rainbow effect changes the color of all of the keyboard's keys at the same time
   // running through all the colors of the rainbow.
   LEDRainbowEffect,
@@ -415,9 +419,18 @@ void setup() {
 
   // We set the brightness of the rainbow effects to 150 (on a scale of 0-255)
   // This draws more than 500mA, but looks much nicer than a dimmer effect
-  LEDRainbowEffect.brightness(150);
-  LEDRainbowWaveEffect.brightness(150);
-  LEDRainbowWaveEffect.activate();
+  /* LEDRainbowEffect.brightness(150); */
+  /* LEDRainbowWaveEffect.brightness(150); */
+  /* LEDRainbowWaveEffect.activate(); */
+
+  constexpr cRGB layerColorMap[] = {
+    CRGB(128,0,0),
+    CRGB(128,0,64),
+    CRGB(128,0,128),
+    CRGB(128,128,0),
+    CRGB(128,128,64)
+  };
+  LEDActiveLayerColorEffect.setColormap(layerColorMap);
 
   // To make the keymap editable without flashing new firmware, we store
   // additional layers in EEPROM. For now, we reserve space for five layers. If
