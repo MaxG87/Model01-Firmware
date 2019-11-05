@@ -52,7 +52,6 @@
 #include <Kaleidoscope-OneShot.h>
 #include <Kaleidoscope-Escape-OneShot.h>
 #include <Kaleidoscope-LED-ActiveModColor.h>
-#include <Kaleidoscope-LED-ActiveLayerColor.h>
 
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
   * The names aren't particularly important. What is important is that each
@@ -121,7 +120,7 @@ enum { MACRO_VERSION_INFO,
   *
   */
 
-enum { LAYOUT_ANNE, FUNCTION_ANNE, NUMPAD_ANNE, LAYOUT_MAX, FUNCTION_MAX}; // layers
+enum { LAYOUT_MAX, FUNCTION_MAX}; // layers
 
 
 /* This comment temporarily turns off astyle's indent enforcement
@@ -130,51 +129,6 @@ enum { LAYOUT_ANNE, FUNCTION_ANNE, NUMPAD_ANNE, LAYOUT_MAX, FUNCTION_MAX}; // la
 // *INDENT-OFF*
 
 KEYMAPS(
-
-  [LAYOUT_ANNE] = KEYMAP_STACKED
-  (Key_Escape,          Key_1, Key_2, Key_3, Key_4, Key_5, Key_LEDEffectNext,
-   Key_Backtick, Key_Q, Key_W, Key_E, Key_R, Key_T, Key_Tab,
-   Key_PageUp,   Key_A, Key_S, Key_D, Key_F, Key_G,
-   Key_PageDown, Key_Z, Key_X, Key_C, Key_V, Key_B, Key_Escape,
-   OSM(LeftControl), Key_Spacebar, OSM(LeftGui), OSM(LeftShift),
-   OSL(FUNCTION_ANNE),
-
-   M(MACRO_ANY),  Key_6, Key_7, Key_8,     Key_9,         Key_0,         Key_Minus,
-   Key_Enter,     Key_Y, Key_U, Key_I,     Key_O,         Key_P,         Key_Equals,
-                  Key_H, Key_J, Key_K,     Key_L,         XXX,           XXX,
-   OSM(RightAlt),  Key_N, Key_M, Key_Comma, Key_Period,    Key_Slash,     XXX,
-   OSM(RightShift),OSM(LeftAlt), Key_W, OSM(RightControl),
-   Key_Backspace),
-
-  [FUNCTION_ANNE] =  KEYMAP_STACKED
-  (LockLayer(LAYOUT_MAX),      Key_F1,           Key_F2,      Key_F3,     Key_F4,        Key_F5,           LockLayer(NUMPAD_ANNE),
-   Key_Tab,  ___,              Key_mouseUp, ___,        Key_mouseBtnR, Key_mouseWarpEnd, Key_mouseWarpNE,
-   Key_Home, Key_Quote,        Key_Minus, Key_mouseR, Key_mouseBtnL, Key_mouseWarpNW,
-   Key_End,  Key_PrintScreen,  Key_Insert,  ___,        Key_mouseBtnM, Key_mouseWarpSW,  Key_mouseWarpSE,
-   ___, Key_Delete, ___, ___,
-   ___,
-
-   Consumer_ScanPreviousTrack, Key_F6,                 Key_F7,                   Key_F8,                   Key_F9,          Key_F10,          Key_F11,
-   Consumer_PlaySlashPause,    Consumer_ScanNextTrack, Key_LeftBracket,          Key_RightCurlyBracket,    Key_Semicolon,   Key_RightBracket, Key_F12,
-                               Key_LeftArrow,          Key_DownArrow,            Key_UpArrow,              Key_RightArrow,  ___,              ___,
-   Key_PcApplication,          Consumer_Mute,          Consumer_VolumeDecrement, Consumer_VolumeIncrement, ___,             Key_Backslash,    Key_Pipe,
-   ___, ___, Key_Enter, ___,
-   ___),
-
-  [NUMPAD_ANNE] =  KEYMAP_STACKED
-  (UnlockLayer(NUMPAD_ANNE), ___, ___, ___, ___, ___, UnlockLayer(NUMPAD_ANNE),
-   ___, ___, ___, ___, ___, ___, ___,
-   ___, ___, ___, ___, ___, ___,
-   ___, ___, ___, ___, ___, ___, ___,
-   ___, ___, ___, ___,
-   ___,
-
-   M(MACRO_VERSION_INFO),  ___, Key_7, Key_8,      Key_9,              Key_KeypadSubtract, ___,
-   ___,                    ___, Key_4, Key_5,      Key_6,              Key_KeypadAdd,      ___,
-                           ___, Key_1, Key_2,      Key_3,              Key_Equals,         ___,
-   ___,                    ___, Key_0, Key_Period, Key_KeypadMultiply, Key_KeypadDivide,   Key_Enter,
-   ___, ___, ___, ___,
-   ___),
 
   [LAYOUT_MAX] = KEYMAP_STACKED
   (Key_Escape, Key_1, Key_2, Key_3, Key_4, Key_5, Key_6,
@@ -192,7 +146,7 @@ KEYMAPS(
    OSM(RightAlt)),
 
   [FUNCTION_MAX] =  KEYMAP_STACKED
-  (UnlockLayer(LAYOUT_MAX),      Key_F1,           Key_F2,      Key_F3,     Key_F4,        Key_F5,           Key_LEDEffectNext,
+  (___,      Key_F1,           Key_F2,      Key_F3,     Key_F4,        Key_F5,           Key_LEDEffectNext,
    Key_Tab,  ___,              Key_mouseUp, ___,        Key_mouseBtnR, Key_mouseWarpEnd, Key_mouseWarpNE,
    Key_Home, Key_mouseL,       Key_mouseDn, Key_mouseR, Key_mouseBtnL, Key_mouseWarpNW,
    Key_End,  Key_PrintScreen,  Key_Insert,  ___,        Key_mouseBtnM, Key_mouseWarpSW,  Key_mouseWarpSE,
@@ -205,7 +159,6 @@ KEYMAPS(
    Key_PcApplication,          Consumer_Mute,          Consumer_VolumeDecrement, Consumer_VolumeIncrement, ___,             Key_Backslash,    Key_Pipe,
    ___, ___, Key_Enter, ___,
    ___)
-
 ) // KEYMAPS(
 
 /* Re-enable astyle's indent enforcement */
@@ -372,9 +325,6 @@ KALEIDOSCOPE_INIT_PLUGINS(
   // LEDControl provides support for other LED modes
   LEDControl,
 
-  // LED-ActiveLayerColor allows to indicate which layer one is in
-  LEDActiveLayerColorEffect,
-
   // The rainbow effect changes the color of all of the keyboard's keys at the same time
   // running through all the colors of the rainbow.
   LEDRainbowEffect,
@@ -419,18 +369,9 @@ void setup() {
 
   // We set the brightness of the rainbow effects to 150 (on a scale of 0-255)
   // This draws more than 500mA, but looks much nicer than a dimmer effect
-  /* LEDRainbowEffect.brightness(150); */
-  /* LEDRainbowWaveEffect.brightness(150); */
-  /* LEDRainbowWaveEffect.activate(); */
-
-  static constexpr cRGB layerColorMap[] PROGMEM = {
-    CRGB(128,0,0),
-    CRGB(128,0,64),
-    CRGB(128,0,128),
-    CRGB(128,128,0),
-    CRGB(128,128,64)
-  };
-  LEDActiveLayerColorEffect.setColormap(layerColorMap);
+  LEDRainbowEffect.brightness(150);
+  LEDRainbowWaveEffect.brightness(150);
+  LEDRainbowWaveEffect.activate();
 
   // To make the keymap editable without flashing new firmware, we store
   // additional layers in EEPROM. For now, we reserve space for five layers. If
