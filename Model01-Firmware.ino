@@ -423,7 +423,7 @@ void setup() {
   /* LEDRainbowWaveEffect.brightness(150); */
   /* LEDRainbowWaveEffect.activate(); */
 
-  constexpr cRGB layerColorMap[] = {
+  static constexpr cRGB layerColorMap[] PROGMEM = {
     CRGB(128,0,0),
     CRGB(128,0,64),
     CRGB(128,0,128),
