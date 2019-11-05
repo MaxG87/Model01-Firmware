@@ -369,9 +369,9 @@ void setup() {
 
   // We set the brightness of the rainbow effects to 150 (on a scale of 0-255)
   // This draws more than 500mA, but looks much nicer than a dimmer effect
-  /* LEDRainbowEffect.brightness(150); */
-  /* LEDRainbowWaveEffect.brightness(150); */
-  /* LEDRainbowWaveEffect.activate(); */
+  LEDRainbowEffect.brightness(150);
+  LEDRainbowWaveEffect.brightness(150);
+  LEDRainbowWaveEffect.activate();
 
   // To make the keymap editable without flashing new firmware, we store
   // additional layers in EEPROM. For now, we reserve space for five layers. If
