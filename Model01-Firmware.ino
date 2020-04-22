@@ -388,7 +388,8 @@ void setup() {
 void loop() {
   Kaleidoscope.loop();
 
-  const bool capsState = kaleidoscope::hid::getKeyboardLEDs() & LED_CAPS_LOCK;
+  const uint8_t ledState = Kaleidoscope.hid().keyboard().getKeyboardLEDs();
+  const bool capsState = ledState & LED_CAPS_LOCK;
 
   if (capsState) {
     LEDControl.setCrgbAt(KeyAddr(2, 0), CRGB(255, 255, 255));
